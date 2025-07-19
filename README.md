@@ -44,8 +44,7 @@ An example docker-compose file has been provided that can be tailored to standup
 ## To Do
 As with anything, there is always more that can be done.  This is my current list (in no particular order):
 
- - Add sanitisation of the output - Marked suggests using DOMParser.
- - Add other extensions into Marked as needed.
+ - Nothing as yet.
 
 ## Thanks
 
