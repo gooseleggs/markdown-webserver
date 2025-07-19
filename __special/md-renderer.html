@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/github-markdown.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked-alert@2.1.2/dist/index.umd.min.js"></script>
+  <script type="module">
+     import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+     mermaid.initialize({ startOnLoad: false });
+     const renderer = new marked.Renderer();
+     marked.use(markedAlert(),{
+       renderer: {
+         code: function (code) {
+            if (code.lang == 'mermaid') return `<pre class="mermaid">${code.text}</pre>`;
+            return `<pre>${code.text}</pre>`; 
+         },
+         heading: function (text, level) {
+  		// var escapedText = (text.text).toLowerCase().replace(/[^\w]+/g, '-');
+                var escapedText = text.text;
+		escapedText = escapedText.replace(/\$/, '%24');
+
+                escapedText = escapedText.toLowerCase().replace(/\ +/g, '-');
+  		return '<h' + text.depth + '><a name="' +
+                	escapedText +
+                 	'"></a>' +
+                  	text.text + '</h' + text.depth + '>';
+	 }
+       }
+     })
+
+     pull.then((text) => {
+    	function updateText(text) {
+       		set(marked(text));
+    	}
+    	updateText(text);
+  	mermaid.run();
+     })
+     .catch((err) => set(`<code class="error">Failed to load ${FILENAME}: ${err.message}</code>`))
+    </script>
+    <style rel="stylesheet">code.error {line-height:2rem;font-size:2rem;color:#F43;padding:2rem;display: block;}</style>
+    <script>
+       const FILENAME = location.pathname;
+       const set = (t) => document.getElementById('content').innerHTML = t;
+       const pull = fetch(FILENAME, {headers: {'Accept': 'text/markdown'}})
+         .then((res) => {
+            if (!res.ok)
+              throw new Error(`${res.statusText} (${res.status})`);
+            return res.text()
+         })
+  </script>
+</head>
+<body>
+
+<div class="container box markdown-body" style="margin:5rem auto;padding:4rem">
+  <div id="content"></div>
+</div>
+
+</body>
+</html>

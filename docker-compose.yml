@@ -1,0 +1,6 @@
+services:
+  markdown-renderer:
+    image:  gooseleggs/html-markdown-renderer:1.0
+    restart: always
+#    volumes:
+#      - .:/var/www/html/markdown
