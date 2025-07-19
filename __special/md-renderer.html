@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="/css/github-markdown.css">
+  <link rel="stylesheet" href="/github-markdown.css">
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked-alert@2.1.2/dist/index.umd.min.js"></script>
   <script type="module">
      import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
@@ -31,14 +32,15 @@
 
      pull.then((text) => {
     	function updateText(text) {
-       		set(marked(text));
+ 		var clean_text = DOMPurify.sanitize(text);
+       		set(marked(clean_text));
     	}
     	updateText(text);
   	mermaid.run();
      })
      .catch((err) => set(`<code class="error">Failed to load ${FILENAME}: ${err.message}</code>`))
     </script>
-    <style rel="stylesheet">code.error {line-height:2rem;font-size:2rem;color:#F43;padding:2rem;display: block;}</style>
+    <style rel="stylesheet">code.error {line-height:2rem;font-size:2rem;color:#F43;padding:2rem;display: block;}</style> 
     <script>
        const FILENAME = location.pathname;
        const set = (t) => document.getElementById('content').innerHTML = t;
@@ -52,7 +54,7 @@
 </head>
 <body>
 
-<div class="container box markdown-body" style="margin:5rem auto;padding:4rem">
+<div class="container box markdown-body" style="margin:1rem auto;padding:1rem">
   <div id="content"></div>
 </div>
 
