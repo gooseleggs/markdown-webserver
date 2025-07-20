@@ -36,8 +36,6 @@ Bind mount your files to `/var/www/html/markdown`
 
 An example docker-compose file has been provided that can be tailored to standup the server.
 
-## Notes and Warnings
-
 ## To Do
 As with anything, there is always more that can be done.  This is my current list (in no particular order):
 
