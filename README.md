@@ -38,9 +38,6 @@ An example docker-compose file has been provided that can be tailored to standup
 
 ## Notes and Warnings
 
-> [!Warning]
-> There is no sanitisation of the output from `marked` which is performing the Markdown to HTML conversion.  Therefore, ensure you know the content of the Markdown files.
-
 ## To Do
 As with anything, there is always more that can be done.  This is my current list (in no particular order):
 
@@ -49,3 +46,6 @@ As with anything, there is always more that can be done.  This is my current lis
 ## Thanks
 
 I did not write all the code for this.  I used a [gist](https://gist.github.com/max-lt/76de5a9765fa713cc5a6e267914ebba6) as the baseline, then modified the `md-renderer.html` file to meet the needs.
+
+## Uses
+This project using Marked for client side rendering, delivered over CDN along with the Mermaid javascript.  The Github CSS is delivered locally.
